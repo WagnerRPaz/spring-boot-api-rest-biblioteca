@@ -1,3 +1,4 @@
+-- liquibase formatted sql
 create table livros
 (
     id int primary key auto_increment,
@@ -7,6 +8,7 @@ create table livros
     autor varchar,
     codigoisbn LONG
 );
+
 create table bibliotecas
 (
     id int primary key auto_increment,

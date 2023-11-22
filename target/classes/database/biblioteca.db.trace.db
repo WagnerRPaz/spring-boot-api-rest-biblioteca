@@ -1,0 +1,19 @@
+2023-11-22 09:14:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "DATABASECHANGELOG" not found (this database is empty); SQL statement:
+SELECT COUNT(*) FROM PUBLIC.DATABASECHANGELOG [42104-214]
+2023-11-22 09:14:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "DATABASECHANGELOGLOCK" not found (this database is empty); SQL statement:
+SELECT COUNT(*) FROM PUBLIC.DATABASECHANGELOGLOCK [42104-214]
+2023-11-22 09:15:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2023-11-22 09:17:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVROS" already exists; SQL statement:
+create table livros
+(
+    id int primary key auto_increment,
+    titulo varchar,
+    categoria varchar,
+    anopublicacao int,
+    autor varchar,
+    codigoisbn LONG
+) [42101-214]
