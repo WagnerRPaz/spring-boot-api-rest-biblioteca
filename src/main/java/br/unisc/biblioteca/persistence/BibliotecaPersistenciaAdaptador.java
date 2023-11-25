@@ -6,7 +6,6 @@ import br.unisc.biblioteca.exception.*;
 import br.unisc.biblioteca.dto.LivroEncontradoBibliotecaDTO;
 import br.unisc.biblioteca.infra.banco.BibliotecaEntidade;
 import br.unisc.biblioteca.infra.banco.BibliotecaLivroEntidade;
-import br.unisc.biblioteca.infra.banco.LivroEntidade;
 import br.unisc.biblioteca.repository.BibliotecaLivroRepository;
 import br.unisc.biblioteca.repository.BibliotecaRepository;
 import br.unisc.biblioteca.repository.LivroRepository;
@@ -15,7 +14,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -65,31 +63,33 @@ public class BibliotecaPersistenciaAdaptador implements BibliotecaPersistencia {
 
     @Override
     public void adicionarLivroNaBiblioteca(BibliotecaLivroDTO dto) {
-        Long bibliotecaId = dto.getBibliotecaId();
-        Long livroId = dto.getLivroId();
 
-        if (gerenciaRepository.existsByBibliotecaIdAndLivroId(bibliotecaId, livroId)) {
-            throw new LivroExistsException("O livro já existe nesta biblioteca.");
+        var bibliotecaOptional = repository.findById(dto.getBibliotecaId());
+        if (bibliotecaOptional.isEmpty()) {
+            throw new BibliotecaNotFoundException("Biblioteca não encontrada.");
         }
-        BibliotecaEntidade biblioteca = repository.findById(dto.getBibliotecaId())
-                .orElseThrow(() -> new BibliotecaNotFoundException("Biblioteca não encontrada."));
 
-        LivroEntidade livro = livroRepository.findById(dto.getLivroId())
-                .orElseThrow(() -> new LivroNotFoundException("Livro não encontrado."));
+        var livroOptional = livroRepository.findByCodigoisbn(dto.getCodigoisbn());
+        if (livroOptional.isEmpty()) {
+           throw new LivroNotFoundException("Livro não encontrado.");
+        }
 
         BibliotecaLivroEntidade bibliotecaLivro = new BibliotecaLivroEntidade();
-        bibliotecaLivro.setBiblioteca(biblioteca);
-        bibliotecaLivro.setLivro(livro);
+        bibliotecaLivro.setBiblioteca(bibliotecaOptional.get());
+        bibliotecaLivro.setLivro(livroOptional.get());
         gerenciaRepository.save(bibliotecaLivro);
+        dto.setId(bibliotecaLivro.getId());
+
     }
 
     @Override
-    @Transactional
-    public void deletarLivroDaBiblioteca(Long bibliotecaId, Long livroId) {
-        if (!gerenciaRepository.existsByBibliotecaIdAndLivroId(bibliotecaId, livroId)) {
+    public void deletarLivroDaBiblioteca(Long id) {
+        var entidadeOptional = gerenciaRepository.findById(id);
+
+        if (entidadeOptional.isEmpty()) {
             throw new AssociationNotFoundException("A associação entre o livro e a biblioteca não existe.");
         }
-        gerenciaRepository.deleteByBibliotecaIdAndLivroId(bibliotecaId, livroId);
+        gerenciaRepository.delete(entidadeOptional.get());
     }
 
     @Override

@@ -30,10 +30,10 @@ DELETE - localhost:8080/bibliotecas/Id desejado
 Gerência da biblioteca:
 Adicionar livro a biblioteca - POST - localhost:8080/bibliotecas/adicionarLivroNaBiblioteca
 {
-    "bibliotecaId":2,
-    "livroId": 1
+    "bibliotecaId":1,
+    "codigoisbn": 9780152023980
 }
-Remover livro da biblioteca - DELETE - localhost:8080/bibliotecas/Id desejado/livros/Id desejado
+Remover livro da biblioteca - DELETE - localhost:8080/bibliotecas/deletarLivroDaBiblioteca/Id desejado
 Listar livros da biblioteca - GET - localhost:8080/bibliotecas/listarLivrosDaBiblioteca/Id desejado
 Encontrar em qual biblioteca tem um livro por titulo - GET - localhost:8080/bibliotecas/buscarLivroPorTitulo?titulo=titulo desejado
 ```

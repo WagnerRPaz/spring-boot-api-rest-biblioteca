@@ -59,9 +59,9 @@ public class BibliotecaController {
                 .build();
     }
 
-    @DeleteMapping("/{bibliotecaId}/livros/{livroId}")
-    public ResponseEntity<?> deletarLivroDaBiblioteca(@PathVariable Long bibliotecaId, @PathVariable Long livroId) {
-        gerenciarService.deletarLivroDaBiblioteca(bibliotecaId, livroId);
+    @DeleteMapping("/deletarLivroDaBiblioteca/{id}")
+    public ResponseEntity<?> deletarLivroDaBiblioteca(@PathVariable Long id) {
+        gerenciarService.deletarLivroDaBiblioteca(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .build();

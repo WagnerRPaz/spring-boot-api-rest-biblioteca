@@ -31,12 +31,6 @@ public class ExceptionHandlerController {
         return ResponseEntity.notFound().build();
     }
 
-    @ExceptionHandler(LivroExistsException.class)
-    public ResponseEntity<?> livroExists() {
-        ExceptionHandlerDTO dto = new ExceptionHandlerDTO("O livro já existe nesta biblioteca.", 400);
-        return ResponseEntity.badRequest().body(dto);
-    }
-
     @ExceptionHandler(AssociationNotFoundException.class)
     public ResponseEntity<?> associationNotFound() {
         ExceptionHandlerDTO dto = new ExceptionHandlerDTO("A associação entre o livro e a biblioteca não existe.", 400);

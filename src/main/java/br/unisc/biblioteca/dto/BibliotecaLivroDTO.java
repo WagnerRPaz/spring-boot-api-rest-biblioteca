@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class BibliotecaLivroDTO {
+    Long id;
     Long bibliotecaId;
-    Long livroId;
+    Long codigoisbn;
 }

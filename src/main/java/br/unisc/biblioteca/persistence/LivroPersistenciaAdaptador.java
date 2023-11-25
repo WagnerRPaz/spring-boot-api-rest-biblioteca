@@ -21,8 +21,8 @@ class LivroPersistenciaAdaptador implements LivroPersistencia {
 
     @Override
     public void criar(LivroDto livroDto) {
-        LivroEntidade livroExistente = repository.findByCodigoisbn(livroDto.getCodigoisbn());
-        if (livroExistente != null) {
+        Optional<LivroEntidade> liverExistence = repository.findByCodigoisbn(livroDto.getCodigoisbn());
+        if (liverExistence.isPresent()) {
             throw new LivroDuplicadoException("Livro já cadastrado.");
         }
         var livroEntidade = LivroEntidade.criarEntidade(livroDto);

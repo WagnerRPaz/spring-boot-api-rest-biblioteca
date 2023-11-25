@@ -20,7 +20,7 @@ public interface BibliotecaPersistencia {
 
     void adicionarLivroNaBiblioteca(BibliotecaLivroDTO dto);
 
-    void deletarLivroDaBiblioteca(Long bibliotecaId, Long livroId);
+    void deletarLivroDaBiblioteca(Long id);
 
     List<LivroEncontradoBibliotecaDTO> buscarLivroPorTitulo(String titulo);
 

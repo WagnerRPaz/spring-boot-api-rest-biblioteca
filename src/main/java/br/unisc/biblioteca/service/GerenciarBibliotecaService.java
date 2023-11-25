@@ -21,8 +21,8 @@ public class GerenciarBibliotecaService {
         persistencia.adicionarLivroNaBiblioteca(dto);
     }
 
-    public void deletarLivroDaBiblioteca(Long bibliotecaId, Long livroId) {
-        persistencia.deletarLivroDaBiblioteca(bibliotecaId, livroId);
+    public void deletarLivroDaBiblioteca(Long id) {
+        persistencia.deletarLivroDaBiblioteca(id);
     }
 
     public List<LivroEncontradoBibliotecaDTO> buscarLivroPorTitulo(String titulo) {
