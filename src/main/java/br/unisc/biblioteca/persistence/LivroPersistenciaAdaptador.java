@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 class LivroPersistenciaAdaptador implements LivroPersistencia {
@@ -56,5 +58,17 @@ class LivroPersistenciaAdaptador implements LivroPersistencia {
             throw new LivroNotFoundException("Este livro não existe!");
         }
         repository.deleteById(id);
+    }
+
+    @Override
+    public Object buscarPorId(Long id) {
+        Optional<LivroEntidade> livroOptional = repository.findById(id);
+
+        if (livroOptional.isPresent()) {
+            LivroEntidade livro = livroOptional.get();
+            return LivroEntidade.converterEntidadeParaDto(livro);
+        } else {
+            throw new LivroNotFoundException("Livro não encontrado para o ID: " + id);
+        }
     }
 }

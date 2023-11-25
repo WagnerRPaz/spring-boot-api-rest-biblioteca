@@ -53,4 +53,5 @@ public class ExceptionHandlerController {
         ExceptionHandlerDTO dto = new ExceptionHandlerDTO("Biblioteca vazia ou não encontrada.", 400);
         return ResponseEntity.badRequest().body(dto);
     }
+
 }

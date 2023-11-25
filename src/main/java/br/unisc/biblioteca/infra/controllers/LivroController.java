@@ -21,6 +21,12 @@ public class LivroController {
         return ResponseEntity.ok(livrosService.buscarTodos(pageable));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<LivroDto> buscarPorId(@PathVariable Long id) {
+        var livro = livrosService.buscarPorId(id);
+        return ResponseEntity.ok((LivroDto) livro);
+    }
+
     @PostMapping
     public ResponseEntity<?> criar(@RequestBody LivroDto livroDto) {
         livrosService.criar(livroDto);

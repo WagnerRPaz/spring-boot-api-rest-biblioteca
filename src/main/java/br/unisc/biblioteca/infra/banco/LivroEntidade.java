@@ -33,7 +33,7 @@ public class LivroEntidade {
     Long codigoisbn;
 
     public static LivroDto converterEntidadeParaDto(LivroEntidade entidade) {
-        return new LivroDto(entidade.getId(), entidade.getTitulo(), entidade.getCategoria(), entidade.getAnopublicacao(), entidade.getAutor(), entidade.getCodigoisbn());
+        return new LivroDto(entidade.getId(), entidade.getTitulo(), entidade.getAnopublicacao(),  entidade.getCategoria(), entidade.getAutor(), entidade.getCodigoisbn());
     }
 
     public static LivroEntidade criarEntidade(LivroDto dto) {

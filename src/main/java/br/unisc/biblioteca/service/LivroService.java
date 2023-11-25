@@ -30,4 +30,6 @@ public class LivroService {
     public void delete(Long id) {
         persistencia.delete(id);
     }
+
+    public Object buscarPorId(Long id) {return persistencia.buscarPorId(id);}
 }

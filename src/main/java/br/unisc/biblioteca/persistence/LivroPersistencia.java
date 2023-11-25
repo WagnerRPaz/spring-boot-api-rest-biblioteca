@@ -13,4 +13,6 @@ public interface LivroPersistencia {
     void update(Long id, LivroDto livroDto);
 
     void delete(Long id);
+
+    Object buscarPorId(Long id);
 }
