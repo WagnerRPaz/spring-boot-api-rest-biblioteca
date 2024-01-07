@@ -25,4 +25,6 @@ public interface BibliotecaPersistencia {
     List<LivroEncontradoBibliotecaDTO> buscarLivroPorTitulo(String titulo);
 
     Page<LivroEncontradoBibliotecaDTO> listarLivrosDaBiblioteca(Long bibliotecaId, Pageable pageable);
+
+    Object buscarPorId(Long id);
 }

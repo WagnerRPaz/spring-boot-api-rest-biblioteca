@@ -28,6 +28,7 @@ public class BibliotecaLivroEntidade {
 
     public static LivroEncontradoBibliotecaDTO convertEntityToDTO(BibliotecaLivroEntidade entidade) {
         var dto = new LivroEncontradoBibliotecaDTO();
+        dto.setId(entidade.getId());
         dto.setNomeBiblioteca(entidade.getBiblioteca().getNome());
         dto.setTituloLivro(entidade.getLivro().getTitulo());
         dto.setCodigoisbn(entidade.getLivro().getCodigoisbn());

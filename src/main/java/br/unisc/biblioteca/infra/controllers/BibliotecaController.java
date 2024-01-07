@@ -14,12 +14,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/bibliotecas")
 @RequiredArgsConstructor
 public class BibliotecaController {
     private final BibliotecaService bibliotecaService;
     private final GerenciarBibliotecaService gerenciarService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BibliotecaDTO> buscarPorId(@PathVariable Long id){
+        var biblioteca = bibliotecaService.buscarPorId(id);
+        return ResponseEntity.ok((BibliotecaDTO) biblioteca);
+    }
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody BibliotecaDTO bibliotecaDTO) {

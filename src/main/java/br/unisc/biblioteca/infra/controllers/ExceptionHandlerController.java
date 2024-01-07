@@ -3,9 +3,11 @@ package br.unisc.biblioteca.infra.controllers;
 import br.unisc.biblioteca.dto.ExceptionHandlerDTO;
 import br.unisc.biblioteca.exception.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+@CrossOrigin(origins = "*")
 @RestControllerAdvice
 public class ExceptionHandlerController {
 

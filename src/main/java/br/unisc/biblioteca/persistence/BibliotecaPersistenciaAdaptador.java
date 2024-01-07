@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -112,5 +113,17 @@ public class BibliotecaPersistenciaAdaptador implements BibliotecaPersistencia {
         }
         Page<BibliotecaLivroEntidade> bibliotecaLivros = gerenciaRepository.findByBibliotecaId(bibliotecaId, pageable);
         return bibliotecaLivros.map(BibliotecaLivroEntidade::convertEntityToDTO);
+    }
+
+    @Override
+    public Object buscarPorId(Long id) {
+        Optional<BibliotecaEntidade> bibliotecaOptional = repository.findById(id);
+
+        if(bibliotecaOptional.isPresent()){
+            BibliotecaEntidade biblioteca = bibliotecaOptional.get();
+            return BibliotecaEntidade.converterEntidadeParaDto(biblioteca);
+        }else{
+            throw new BibliotecaNotFoundException("Biblioteca não encontrada.");
+        }
     }
 }

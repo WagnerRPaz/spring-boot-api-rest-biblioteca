@@ -27,7 +27,7 @@ public class BibliotecaService {
         persistencia.deleteBiblioteca(id);
     }
 
-    public void updateBiblioteca(Long id, BibliotecaDTO bibliotecaDTO) {
-        persistencia.updateBiblioteca(id, bibliotecaDTO);
-    }
+    public void updateBiblioteca(Long id, BibliotecaDTO bibliotecaDTO) {persistencia.updateBiblioteca(id, bibliotecaDTO);}
+
+    public Object buscarPorId(Long id) {return persistencia.buscarPorId(id);}
 }
